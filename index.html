@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNSTOPPABLE Life Balance AI</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+:root{
+  --bg:#020617;
+  --glass:rgba(255,255,255,0.08);
+  --blue:#38bdf8;
+  --green:#22c55e;
+  --pink:#ec4899;
+  --yellow:#facc15;
+  --text:#e5e7eb;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,Arial;}
+body{
+  background:radial-gradient(circle at top,#020617,#000);
+  color:var(--text);
+}
+header{
+  padding:22px;text-align:center;
+  font-size:32px;font-weight:800;
+  background:linear-gradient(135deg,#2563eb,#22c55e,#ec4899,#facc15);
+  background-size:300% 300%;
+  animation:grad 10s infinite;
+}
+@keyframes grad{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+header span{font-size:13px;opacity:.9}
+nav{
+  display:flex;justify-content:center;gap:10px;
+  padding:10px;background:#020617;position:sticky;top:0;z-index:10;
+}
+nav button{
+  background:var(--glass);border:none;color:#fff;font-weight:600;
+  padding:8px 16px;border-radius:20px;cursor:pointer;
+  transition:.3s;
+}
+nav button:hover{background:#2563eb;transform:scale(1.05);}
+.container{max-width:1500px;margin:auto;padding:22px;}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+}
+.card{
+  background:var(--glass);
+  backdrop-filter:blur(12px);
+  border-radius:20px;
+  padding:20px;
+  border:1px solid rgba(255,255,255,0.12);
+  transition:.3s;
+}
+.card:hover{transform:translateY(-6px);}
+h2{margin:20px 0;color:var(--green);font-size:24px;}
+.big{font-size:34px;font-weight:800;margin:10px 0;}
+.btn{
+  background:linear-gradient(135deg,#2563eb,#22c55e);
+  border:none;color:#fff;padding:9px 20px;
+  border-radius:25px;margin:4px;font-weight:700;cursor:pointer;
+  transition:.25s;
+}
+.btn:hover{opacity:.85;transform:scale(1.05);}
+.progress{
+  width:100%;height:12px;background:#1f2937;border-radius:10px;margin-top:10px;
+}
+.bar{height:12px;border-radius:10px;width:0%;}
+.badge{
+  display:inline-block;padding:6px 14px;border-radius:20px;
+  background:#1f2937;margin:3px;font-size:12px;
+}
+input{
+  padding:11px;border-radius:12px;border:none;
+  background:#020617;color:#fff;width:100%;margin:6px 0;
+}
+footer{text-align:center;padding:18px;color:#94a3b8;font-size:14px;}
+.overlay{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:#000;display:none;align-items:center;justify-content:center;
+  z-index:100;color:#fff;font-size:36px;font-weight:800;
+}
+</style>
+</head>
+<body>
+
+<div class="overlay" id="focusScreen">🔒 FOCUS MODE ACTIVE<br><span style="font-size:16px;">Stay away from distractions</span></div>
+
+<header>
+⚡ UNSTOPPABLE LIFE BALANCE AI  
+<span>Real User Behavior • Real Engagement • Real Analytics</span>
+</header>
+
+<nav>
+  <button onclick="scrollToSec('login')">User</button>
+  <button onclick="scrollToSec('dash')">Dashboard</button>
+  <button onclick="scrollToSec('life')">Life Mode</button>
+  <button onclick="scrollToSec('ai')">AI</button>
+  <button onclick="scrollToSec('stats')">Analytics</button>
+</nav>
+
+<div class="container">
+
+<!-- USER SYSTEM -->
+<section id="login">
+<h2>👤 Real User System</h2>
+<div class="grid">
+<div class="card">
+  <h3>Enter Your Name</h3>
+  <input id="username" placeholder="Your Name">
+  <button class="btn" onclick="login()">Start Tracking</button>
+  <p id="userDisplay"></p>
+  <p id="sessionInfo"></p>
+</div>
+</div>
+</section>
+
+<!-- DASHBOARD -->
+<section id="dash">
+<h2>📊 Real-Time Dashboard</h2>
+<div class="grid">
+
+<div class="card">
+  <h3>📱 Digital Usage (Simulated Real)</h3>
+  <div class="big" id="screenTime">0 min</div>
+  <div class="progress"><div class="bar" id="screenBar" style="background:var(--pink)"></div></div>
+</div>
+
+<div class="card">
+  <h3>🌿 Real Life Activities</h3>
+  <div class="big" id="realTime">0 min</div>
+  <div class="progress"><div class="bar" id="realBar" style="background:var(--green)"></div></div>
+</div>
+
+<div class="card">
+  <h3>⚖️ Productivity Score</h3>
+  <div class="big" id="score">0</div>
+  <canvas id="chart"></canvas>
+</div>
+
+</div>
+</section>
+
+<!-- LIFE MODE -->
+<section id="life">
+<h2>🌿 Beyond Screen Life</h2>
+<div class="grid">
+
+<div class="card">
+  <h3>🎧 Music</h3>
+  <button class="btn" onclick="addReal(5)">5 min</button>
+  <button class="btn" onclick="addReal(15)">15 min</button>
+</div>
+
+<div class="card">
+  <h3>🎤 Singing</h3>
+  <button class="btn" onclick="addReal(5)">5 min</button>
+  <button class="btn" onclick="addReal(10)">10 min</button>
+</div>
+
+<div class="card">
+  <h3>🧘 Yoga</h3>
+  <button class="btn" onclick="addReal(5)">5 min</button>
+  <button class="btn" onclick="addReal(20)">20 min</button>
+</div>
+
+</div>
+</section>
+
+<!-- AI ENGINE -->
+<section id="ai">
+<h2>🤖 Real Behavior AI Engine</h2>
+<div class="grid">
+
+<div class="card">
+  <h3>🏆 User Level</h3>
+  <div class="big" id="level">Beginner</div>
+  <div id="badges"></div>
+</div>
+
+<div class="card">
+  <h3>🚨 AI Recommendation</h3>
+  <div id="warning">System analyzing behavior...</div>
+  <button class="btn" onclick="addScreen(10)">+10 Digital Time</button>
+  <button class="btn" onclick="toggleFocus()">Focus Mode</button>
+</div>
+
+<div class="card">
+  <h3>🔥 Habit Streak</h3>
+  <div class="big" id="streak">0 Days</div>
+</div>
+
+</div>
+</section>
+
+<!-- ANALYTICS -->
+<section id="stats">
+<h2>📈 Real Analytics</h2>
+<div class="grid">
+<div class="card">
+  <h3>User Behavior Report</h3>
+  <p id="report"></p>
+</div>
+</div>
+</section>
+
+</div>
+
+<footer>
+© 2026 UNSTOPPABLE Life Balance AI | Created by Sudeep Lamichhane 🚀
+</footer>
+
+<script>
+let screenTime = Number(localStorage.getItem("screenTime")) || 0;
+let realTime = Number(localStorage.getItem("realTime")) || 0;
+let streak = Number(localStorage.getItem("streak")) || 0;
+let user = localStorage.getItem("user") || "";
+let focus=false;
+
+// REAL USER SESSION TRACKING
+let sessionStart = Date.now();
+let activeTime = 0;
+let lastActivity = Date.now();
+
+document.addEventListener("mousemove",()=>lastActivity=Date.now());
+document.addEventListener("keydown",()=>lastActivity=Date.now());
+
+setInterval(()=>{
+  let now=Date.now();
+  if(now-lastActivity<5000){ // user active
+    activeTime += 1; // seconds
+  }
+},1000);
+
+// LOGIN
+function login(){
+  user=document.getElementById("username").value || "Guest";
+  localStorage.setItem("user",user);
+  document.getElementById("userDisplay").innerText="Welcome, "+user+" 🌟";
+}
+
+// SAVE DATA
+function save(){
+  localStorage.setItem("screenTime",screenTime);
+  localStorage.setItem("realTime",realTime);
+  localStorage.setItem("streak",streak);
+}
+
+// CORE UPDATE ENGINE
+function update(){
+  // REALISTIC DIGITAL TIME SIMULATION
+  screenTime += Math.random()<0.02 ? 1 : 0; // simulate background usage
+
+  document.getElementById("screenTime").innerText=screenTime+" min";
+  document.getElementById("realTime").innerText=realTime+" min";
+
+  let sp=Math.min(screenTime/180*100,100);
+  let rp=Math.min(realTime/90*100,100);
+  document.getElementById("screenBar").style.width=sp+"%";
+  document.getElementById("realBar").style.width=rp+"%";
+
+  // REAL PRODUCTIVITY ALGORITHM
+  let score=Math.max(0,120 - screenTime + realTime + Math.floor(activeTime/60));
+  document.getElementById("score").innerText=score;
+
+  // AI LOGIC
+  let warn="✅ Balanced lifestyle detected.";
+  if(screenTime>60 && realTime<20) warn="⚠️ Too much digital usage. Try yoga or music.";
+  if(screenTime>120) warn="🚨 High risk of digital addiction!";
+  document.getElementById("warning").innerText=warn;
+
+  // LEVEL SYSTEM
+  let level="Beginner";
+  let badges=[];
+  if(score>40){level="Focused User";badges.push("🎯 Focus");}
+  if(score>80){level="Life Master";badges.push("🌿 Balance","🏆 Master");}
+  document.getElementById("level").innerText=level;
+  document.getElementById("badges").innerHTML=badges.map(b=>`<span class="badge">${b}</span>`).join("");
+
+  // STREAK LOGIC
+  if(realTime>screenTime) streak++;
+  document.getElementById("streak").innerText=streak+" Days";
+
+  // REAL ANALYTICS REPORT
+  let sessionMinutes = Math.floor((Date.now()-sessionStart)/60000);
+  document.getElementById("sessionInfo").innerText="Session Time: "+sessionMinutes+" min | Active Time: "+Math.floor(activeTime/60)+" min";
+
+  document.getElementById("report").innerHTML=
+    "<b>User:</b> "+user+"<br>"+
+    "<b>Session:</b> "+sessionMinutes+" min<br>"+
+    "<b>Active Engagement:</b> "+Math.floor(activeTime/60)+" min<br>"+
+    "<b>Digital Usage:</b> "+screenTime+" min<br>"+
+    "<b>Real Life:</b> "+realTime+" min<br>"+
+    "<b>Score:</b> "+score+"<br>"+
+    "<b>Level:</b> "+level;
+
+  chart.data.datasets[0].data=[screenTime,realTime];
+  chart.update();
+  save();
+}
+
+function addScreen(m){if(!focus){screenTime+=m;update();}}
+function addReal(m){realTime+=m;update();}
+
+function toggleFocus(){
+  focus=!focus;
+  document.getElementById("focusScreen").style.display=focus?"flex":"none";
+}
+
+function scrollToSec(id){
+  document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+const ctx=document.getElementById("chart");
+const chart=new Chart(ctx,{
+  type:"doughnut",
+  data:{
+    labels:["Digital Life","Real Life"],
+    datasets:[{
+      data:[screenTime,realTime],
+      backgroundColor:["#ec4899","#22c55e"]
+    }]
+  },
+  options:{plugins:{legend:{labels:{color:"#fff"}}}}
+});
+
+// LIVE ENGINE
+setInterval(update,3000);
+update();
+</script>
+
+</body>
+</html>
