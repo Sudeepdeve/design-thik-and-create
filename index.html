@@ -3,336 +3,407 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UNSTOPPABLE Life Balance AI</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<title>ICPQuest 2026 - Think. Design. Create</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
 <style>
 :root{
-  --bg:#020617;
-  --glass:rgba(255,255,255,0.08);
-  --blue:#38bdf8;
-  --green:#22c55e;
-  --pink:#ec4899;
-  --yellow:#facc15;
-  --text:#e5e7eb;
+ --primary:#0f3460; --secondary:#16213e;
+ --accent-green:#00d4aa; --accent-blue:#0099ff;
+ --light-bg:#f0f4f8; --border:#e5e7eb;
+ --shadow:0 8px 24px rgba(0,0,0,0.12);
+ --nav-height:64px;
 }
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,Arial;}
-body{
-  background:radial-gradient(circle at top,#020617,#000);
-  color:var(--text);
-}
-header{
-  padding:22px;text-align:center;
-  font-size:32px;font-weight:800;
-  background:linear-gradient(135deg,#2563eb,#22c55e,#ec4899,#facc15);
-  background-size:300% 300%;
-  animation:grad 10s infinite;
-}
-@keyframes grad{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
-header span{font-size:13px;opacity:.9}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:Poppins,sans-serif;background:#f0f4f8;color:#1a2332;padding-top:var(--nav-height);-webkit-font-smoothing:antialiased;}
+h2{font-size:32px;text-align:center;margin-bottom:30px;color:#162447;font-weight:700;}
+
+/* NAV */
 nav{
-  display:flex;justify-content:center;gap:10px;
-  padding:10px;background:#020617;position:sticky;top:0;z-index:10;
+ position:fixed;top:0;width:100%;z-index:1000;height:var(--nav-height);
+ background:rgba(15,52,96,.95);color:#fff;padding:8px 20px;
+ display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(6px);
 }
-nav button{
-  background:var(--glass);border:none;color:#fff;font-weight:600;
-  padding:8px 16px;border-radius:20px;cursor:pointer;
-  transition:.3s;
+nav img{max-width:140px;height:auto;display:block;}
+nav .menu{display:flex;gap:30px;}
+nav a{text-decoration:none;color:#fff;font-size:15px;position:relative;}
+nav a:hover{color:var(--accent-green);}
+nav .menu-toggle{display:none;font-size:28px;border:0;background:none;color:#fff;position:relative;z-index:1101;}
+
+/* HERO */
+.hero{
+ min-height:calc(100vh - var(--nav-height));
+ background:linear-gradient(135deg,rgba(15,52,96,0.75),rgba(22,33,62,0.75)), url("sudeep.jpg") center/cover no-repeat;
+ display:flex;justify-content:center;align-items:center;text-align:center;color:#fff;padding:0 10%;
 }
-nav button:hover{background:#2563eb;transform:scale(1.05);}
-.container{max-width:1500px;margin:auto;padding:22px;}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;
-}
-.card{
-  background:var(--glass);
-  backdrop-filter:blur(12px);
-  border-radius:20px;
-  padding:20px;
-  border:1px solid rgba(255,255,255,0.12);
-  transition:.3s;
-}
-.card:hover{transform:translateY(-6px);}
-h2{margin:20px 0;color:var(--green);font-size:24px;}
-.big{font-size:34px;font-weight:800;margin:10px 0;}
-.btn{
-  background:linear-gradient(135deg,#2563eb,#22c55e);
-  border:none;color:#fff;padding:9px 20px;
-  border-radius:25px;margin:4px;font-weight:700;cursor:pointer;
-  transition:.25s;
-}
-.btn:hover{opacity:.85;transform:scale(1.05);}
-.progress{
-  width:100%;height:12px;background:#1f2937;border-radius:10px;margin-top:10px;
-}
-.bar{height:12px;border-radius:10px;width:0%;}
-.badge{
-  display:inline-block;padding:6px 14px;border-radius:20px;
-  background:#1f2937;margin:3px;font-size:12px;
-}
-input{
-  padding:11px;border-radius:12px;border:none;
-  background:#020617;color:#fff;width:100%;margin:6px 0;
-}
-footer{text-align:center;padding:18px;color:#94a3b8;font-size:14px;}
-.overlay{
-  position:fixed;top:0;left:0;width:100%;height:100%;
-  background:#000;display:none;align-items:center;justify-content:center;
-  z-index:100;color:#fff;font-size:36px;font-weight:800;
+.hero h1{font-size:clamp(24px,5vw,48px);margin-bottom:10px;font-weight:800;}
+.hero p{font-size:clamp(16px,2.5vw,20px);opacity:0.95;}
+
+/* SECTION */
+section{padding:80px 10%;}
+.cards, .data-grid, .team-grid, .video-box{display:grid;gap:20px;}
+.cards{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
+.card{background:#fff;padding:24px;border-radius:14px;border:1px solid var(--border);box-shadow:var(--shadow);transition:.3s;}
+.card:hover{transform:translateY(-6px);border-color:var(--accent-green);}
+
+/* Data Section */
+.data-grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));justify-items:center;}
+.iframe-container{position:relative;width:100%;max-width:520px;overflow:hidden;border-radius:12px;border:1px solid var(--border);}
+.iframe-container iframe{width:100%;height:260px;border:none;border-radius:12px;display:block;}
+
+/* Team Section */
+.team-grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));justify-items:center;}
+.member{background:#fff;border-radius:14px;padding:22px;text-align:center;box-shadow:var(--shadow);border:1px solid var(--border);transition:.3s;}
+.member:hover{transform:translateY(-6px);border-color:var(--accent-blue);}
+.member img{width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:12px;border:4px solid var(--accent-green);}
+.member h3{margin-bottom:6px;font-size:20px;font-weight:700;}
+.member p{font-size:14px;color:#526273;}
+
+/* Video Section */
+.video-box{display:flex;justify-content:center; gap:18px;flex-wrap:wrap;align-items:flex-start;}
+.video-box iframe, .video-box video{width:100%;max-width:420px;height:auto;aspect-ratio:16/9;border-radius:12px;box-shadow:var(--shadow);}
+
+/* Prototype Card */
+.prototype-card{display:flex;align-items:center;gap:20px;padding:18px;background:linear-gradient(180deg,rgba(255,255,255,0.95),#fff);border-radius:12px;border:1px solid var(--border);box-shadow:var(--shadow);}
+.prototype-card .prototype-info{flex:1;}
+.prototype-card .proto-title{font-size:20px;margin:0 0 8px;color:#162447;font-weight:700;}
+.prototype-card .proto-desc{color:#526273;margin-bottom:14px;line-height:1.4;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700;border:1px solid transparent;transition:all .18s ease;}
+.btn-primary{background:linear-gradient(90deg,var(--accent-blue),var(--accent-green));color:#fff;box-shadow:0 8px 22px rgba(12,50,100,0.12);}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(12,50,100,0.18);}
+@media(max-width:720px){.prototype-card{flex-direction:column;align-items:stretch}.prototype-card .prototype-thumb{width:100%;margin-top:12px}}
+
+/* Footer */
+footer{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;padding:30px;text-align:center;margin-top:60px;}
+
+/* Responsive */
+@media(max-width:768px){
+ nav .menu{position:fixed;top:64px;left:0;right:0;height:calc(100vh - 64px);z-index:1100;background:var(--primary);flex-direction:column;text-align:center;padding:18px 20px;display:none;overflow:auto;}
+ nav .menu.show{display:flex;}
+ nav .menu a{display:block;padding:14px 10px;font-size:18px;border-bottom:1px solid rgba(255,255,255,0.03);}
+ nav .menu-toggle{display:block;}
+ body.menu-open{overflow:hidden;}
 }
 </style>
 </head>
+
 <body>
 
-<div class="overlay" id="focusScreen">🔒 FOCUS MODE ACTIVE<br><span style="font-size:16px;">Stay away from distractions</span></div>
-
-<header>
-⚡ UNSTOPPABLE LIFE BALANCE AI  
-<span>Real User Behavior • Real Engagement • Real Analytics</span>
-</header>
-
+<!-- NAV -->
 <nav>
-  <button onclick="scrollToSec('login')">User</button>
-  <button onclick="scrollToSec('dash')">Dashboard</button>
-  <button onclick="scrollToSec('life')">Life Mode</button>
-  <button onclick="scrollToSec('ai')">AI</button>
-  <button onclick="scrollToSec('stats')">Analytics</button>
+  <a href="#hero"><img src="logo.png" alt="Logo"></a>
+  <button class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+  <div class="menu">
+    <a href="#hero">Home</a>
+    <a href="#problem">Problem</a>
+    <a href="#data">Data</a>
+    <a href="#team">Team</a>
+    <a href="#prototype">Prototype</a>
+    <a href="#pitch">Pitch</a>
+  </div>
 </nav>
 
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div>
+    <h1>ICPQuest 2026 - Think. Design. Create</h1>
+    <p>Innovative Project Workflow and Prototype Showcase</p>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <h2>1️⃣ Problem Lab</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Problem Title</h3>
+      <p>About the problem in one line.</p>
+      <img src="sudeep.jpg" alt="Problem Example" style="width:100%;border-radius:12px;">
+    </div>
+  </div>
+</section>
+
+<!-- DATA -->
+<section id="data" style="background:#eef4f7;">
+  <h2>2️⃣ Data Lab</h2>
+  <div class="data-grid">
+    <div class="iframe-container">
+      <iframe src="https://example.com/chart1"></iframe>
+    </div>
+    <div class="iframe-container">
+      <iframe src="https://example.com/chart2"></iframe>
+    </div>
+    <div class="iframe-container">
+      <iframe src="https://example.com/chart3"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <h2>3️⃣ Team Lab</h2>
+
+
+<style>
+  .container{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(220px,1fr));
+    gap: 20px;
+    justify-items: center;
+    align-items: start;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 760px;
+}
+.border{
+    background:transparent;
+    border-radius: 10px;
+    transition: border  1s;
+    position: relative;
+}
+
+.border:hover{
+    border: 1px solid #fff;
+}
+.border h3{margin:0;font-size:18px;color:#0a0909;font-weight:700;}
+.border p.role{margin:4px 0 0;color:#804848;font-size:13px;opacity:0.95}
+.image-box{
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 70px 63px -60px #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    height: 340px;
+    width: 240px;
+}
+.image-box .border{
+    order: -1;
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+    background: rgba(255, 253, 253, 0.6);
+}
+.image-content{
+  flex:1;
+  width:100%;
+  height:280px;
+  transition: background 0.8s ease, transform 0.6s ease;
+}
+.image-content.image-box0{
+    background: url("sudeep.jpg") center center no-repeat;
+    background-size: cover;
+}
+.image-content.image-box0:hover{
+    background: url("sudeep.jpg") left center no-repeat;
+    background-size: 130%;
+}
+
+.image-content.image-box1{
+    background: url("rr.jpeg") center center no-repeat;
+    background-size: cover;
+}
+.image-content.image-box1:hover{
+    background: url("rr.jpeg") left center no-repeat;
+    background-size: 130%;
+}
+
+.image-content.image-box2{
+    background: url("nb.jpeg") center center no-repeat;
+    background-size: cover;
+}
+.image-content.image-box2:hover{
+    background: url("nb.jpeg") left center no-repeat;
+  background-size: 130%;
+}
+.image-content.image-box3{
+    background: url("sn.jpeg") center center no-repeat;
+    background-size: cover;
+}
+.image-content.image-box3:hover{
+    background: url("sn.jpeg") left center no-repeat;
+  background-size: 130%;
+}
+.image-content.image-box4{
+    background: url("st.jpg") center center no-repeat;
+    background-size: cover;
+}
+.image-content.image-box4:hover{
+    background: url("st.jpg") left center no-repeat;
+  background-size: 130%;
+}
+
+
+
+
+.image-content:hover{transform:scale(1.02)}
+
+h2{
+    font-family: 'Helvetica Neue',Arial, Helvetica, sans-serif;
+    color: #1768ffbe;
+    margin: 20px;
+    opacity: 1;
+    transition: opacity 1s;
+}
+h3{
+    font-family: 'Helvetica Neue',Arial, Helvetica, sans-serif;
+    color: #1774ff;
+    margin: 20px;
+    opacity: 1;
+    transition: opacity 1s;
+}
+h4{
+    font-family: 'Helvetica Neue',Arial, Helvetica, sans-serif;
+    color: #38383b;
+
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+@media(max-width:768px){
+ .container{
+    flex-direction: column;
+    gap: 30px;
+ }
+ .image-box{
+    height: 300px;
+    width: 180px;
+ }
+ .image-content{
+    height: 240px;
+ }
+}
+
+@media(max-width:480px){
+ .image-box{
+    height: 260px;
+    width: 140px;
+ }
+ .image-content{
+    height: 200px;
+ }
+ h2, h3{
+    margin: 5px;
+    font-size: 12px;
+ }
+ .iframe-container{
+    max-width:100%;
+    height:220px;
+ }
+}
+</style>
 <div class="container">
+  <div class="image-box">
+    <div class="border">
+      <h3>Sudeep Lamichhane</h3>
+      <p class="role">Coordinator</p>
+    </div>
+    <div class="image-content image-box0"></div>
+  </div>
 
-<!-- USER SYSTEM -->
-<section id="login">
-<h2>👤 Real User System</h2>
-<div class="grid">
-<div class="card">
-  <h3>Enter Your Name</h3>
-  <input id="username" placeholder="Your Name">
-  <button class="btn" onclick="login()">Start Tracking</button>
-  <p id="userDisplay"></p>
-  <p id="sessionInfo"></p>
-</div>
-</div>
-</section>
+  <div class="image-box">
+    <div class="border">
+      <h3>R.R Oli</h3>
+      <p class="role">Documentation</p>
+    </div>
+    <div class="image-content image-box1"></div>
+  </div>
 
-<!-- DASHBOARD -->
-<section id="dash">
-<h2>📊 Real-Time Dashboard</h2>
-<div class="grid">
+   <div class="image-box">
+    <div class="border">
+      <h3>Neeraj Bhattrai</h3>
+      <p class="role">Prototype Creator</p>
+    </div>
+    <div class="image-content image-box2"></div>
+  </div>
 
-<div class="card">
-  <h3>📱 Digital Usage (Simulated Real)</h3>
-  <div class="big" id="screenTime">0 min</div>
-  <div class="progress"><div class="bar" id="screenBar" style="background:var(--pink)"></div></div>
-</div>
+   <div class="image-box">
+    <div class="border">
+      <h3>Suresh Nepali</h3>
+      <p class="role">Prototype Creator</p>
+    </div>
+    <div class="image-content image-box3"></div>
+  </div>
 
-<div class="card">
-  <h3>🌿 Real Life Activities</h3>
-  <div class="big" id="realTime">0 min</div>
-  <div class="progress"><div class="bar" id="realBar" style="background:var(--green)"></div></div>
-</div>
 
-<div class="card">
-  <h3>⚖️ Productivity Score</h3>
-  <div class="big" id="score">0</div>
-  <canvas id="chart"></canvas>
-</div>
-
-</div>
-</section>
-
-<!-- LIFE MODE -->
-<section id="life">
-<h2>🌿 Beyond Screen Life</h2>
-<div class="grid">
-
-<div class="card">
-  <h3>🎧 Music</h3>
-  <button class="btn" onclick="addReal(5)">5 min</button>
-  <button class="btn" onclick="addReal(15)">15 min</button>
-</div>
-
-<div class="card">
-  <h3>🎤 Singing</h3>
-  <button class="btn" onclick="addReal(5)">5 min</button>
-  <button class="btn" onclick="addReal(10)">10 min</button>
-</div>
-
-<div class="card">
-  <h3>🧘 Yoga</h3>
-  <button class="btn" onclick="addReal(5)">5 min</button>
-  <button class="btn" onclick="addReal(20)">20 min</button>
-</div>
-
+  <div class="image-box">
+    <div class="border">
+      <h3>Swroup Tiwari</h3>
+      <p class="role">Research </p>
+    </div>
+    <div class="image-content image-box4"></div>
+  </div>
 </div>
 </section>
 
-<!-- AI ENGINE -->
-<section id="ai">
-<h2>🤖 Real Behavior AI Engine</h2>
-<div class="grid">
-
-<div class="card">
-  <h3>🏆 User Level</h3>
-  <div class="big" id="level">Beginner</div>
-  <div id="badges"></div>
-</div>
-
-<div class="card">
-  <h3>🚨 AI Recommendation</h3>
-  <div id="warning">System analyzing behavior...</div>
-  <button class="btn" onclick="addScreen(10)">+10 Digital Time</button>
-  <button class="btn" onclick="toggleFocus()">Focus Mode</button>
-</div>
-
-<div class="card">
-  <h3>🔥 Habit Streak</h3>
-  <div class="big" id="streak">0 Days</div>
-</div>
-
-</div>
+    
+  </div>
 </section>
 
-<!-- ANALYTICS -->
-<section id="stats">
-<h2>📈 Real Analytics</h2>
-<div class="grid">
-<div class="card">
-  <h3>User Behavior Report</h3>
-  <p id="report"></p>
-</div>
-</div>
+<!-- PROTOTYPE -->
+<section id="prototype" style="background:#eef4f7;">
+  <h2>4️⃣ Prototype Lab</h2>
+  <div class="cards">
+    <div class="card prototype-card">
+      <div class="prototype-info">
+        <h3 class="proto-title">Smart Water Monitor</h3>
+        <p class="proto-desc">A compact device that monitors water quality and usage in real-time, with alerts and analytics to reduce waste. Lightweight, solar-powered, and easy to install.</p>
+        <a class="btn btn-primary" href="https://example.com" target="_blank" rel="noopener">View More <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="prototype-thumb">
+        <img src="prototype.jpg" alt="Prototype" style="width:180px;border-radius:12px;display:block;">
+      </div>
+    </div>
+
+    <div class="cards">
+    <div class="card prototype-card">
+      <div class="prototype-info">
+        <h3 class="proto-title">Smart Water Monitor</h3>
+        <p class="proto-desc">A compact device that monitors water quality and usage in real-time, with alerts and analytics to reduce waste. Lightweight, solar-powered, and easy to install.</p>
+        <a class="btn btn-primary" href="https://example.com" target="_blank" rel="noopener">View More <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="prototype-thumb">
+        <img src="prototype.jpg" alt="Prototype" style="width:180px;border-radius:12px;display:block;">
+      </div>
+    </div>
+  </div>
 </section>
 
-</div>
+<!-- PITCH -->
+<section id="pitch">
+  <h2>5️⃣ Pitch & Conclusion</h2>
+  <div class="cards">
+    <div class="card">
+      <p>Video taken from the user about our project.</p>
+    </div>
+  </div>
+  <div class="video-box">
+    <video controls><source src="demo.mp4" type="video/mp4"></video>
+    <video controls><source src="demo2.mp4" type="video/mp4"></video>
+  </div>
+</section>
 
-<footer>
-© 2026 UNSTOPPABLE Life Balance AI | Created by Sudeep Lamichhane 🚀
-</footer>
+<footer>© 2026 ICPQuest | Team Amar Singh | Thank You!</footer>
 
 <script>
-let screenTime = Number(localStorage.getItem("screenTime")) || 0;
-let realTime = Number(localStorage.getItem("realTime")) || 0;
-let streak = Number(localStorage.getItem("streak")) || 0;
-let user = localStorage.getItem("user") || "";
-let focus=false;
-
-// REAL USER SESSION TRACKING
-let sessionStart = Date.now();
-let activeTime = 0;
-let lastActivity = Date.now();
-
-document.addEventListener("mousemove",()=>lastActivity=Date.now());
-document.addEventListener("keydown",()=>lastActivity=Date.now());
-
-setInterval(()=>{
-  let now=Date.now();
-  if(now-lastActivity<5000){ // user active
-    activeTime += 1; // seconds
-  }
-},1000);
-
-// LOGIN
-function login(){
-  user=document.getElementById("username").value || "Guest";
-  localStorage.setItem("user",user);
-  document.getElementById("userDisplay").innerText="Welcome, "+user+" 🌟";
-}
-
-// SAVE DATA
-function save(){
-  localStorage.setItem("screenTime",screenTime);
-  localStorage.setItem("realTime",realTime);
-  localStorage.setItem("streak",streak);
-}
-
-// CORE UPDATE ENGINE
-function update(){
-  // REALISTIC DIGITAL TIME SIMULATION
-  screenTime += Math.random()<0.02 ? 1 : 0; // simulate background usage
-
-  document.getElementById("screenTime").innerText=screenTime+" min";
-  document.getElementById("realTime").innerText=realTime+" min";
-
-  let sp=Math.min(screenTime/180*100,100);
-  let rp=Math.min(realTime/90*100,100);
-  document.getElementById("screenBar").style.width=sp+"%";
-  document.getElementById("realBar").style.width=rp+"%";
-
-  // REAL PRODUCTIVITY ALGORITHM
-  let score=Math.max(0,120 - screenTime + realTime + Math.floor(activeTime/60));
-  document.getElementById("score").innerText=score;
-
-  // AI LOGIC
-  let warn="✅ Balanced lifestyle detected.";
-  if(screenTime>60 && realTime<20) warn="⚠️ Too much digital usage. Try yoga or music.";
-  if(screenTime>120) warn="🚨 High risk of digital addiction!";
-  document.getElementById("warning").innerText=warn;
-
-  // LEVEL SYSTEM
-  let level="Beginner";
-  let badges=[];
-  if(score>40){level="Focused User";badges.push("🎯 Focus");}
-  if(score>80){level="Life Master";badges.push("🌿 Balance","🏆 Master");}
-  document.getElementById("level").innerText=level;
-  document.getElementById("badges").innerHTML=badges.map(b=>`<span class="badge">${b}</span>`).join("");
-
-  // STREAK LOGIC
-  if(realTime>screenTime) streak++;
-  document.getElementById("streak").innerText=streak+" Days";
-
-  // REAL ANALYTICS REPORT
-  let sessionMinutes = Math.floor((Date.now()-sessionStart)/60000);
-  document.getElementById("sessionInfo").innerText="Session Time: "+sessionMinutes+" min | Active Time: "+Math.floor(activeTime/60)+" min";
-
-  document.getElementById("report").innerHTML=
-    "<b>User:</b> "+user+"<br>"+
-    "<b>Session:</b> "+sessionMinutes+" min<br>"+
-    "<b>Active Engagement:</b> "+Math.floor(activeTime/60)+" min<br>"+
-    "<b>Digital Usage:</b> "+screenTime+" min<br>"+
-    "<b>Real Life:</b> "+realTime+" min<br>"+
-    "<b>Score:</b> "+score+"<br>"+
-    "<b>Level:</b> "+level;
-
-  chart.data.datasets[0].data=[screenTime,realTime];
-  chart.update();
-  save();
-}
-
-function addScreen(m){if(!focus){screenTime+=m;update();}}
-function addReal(m){realTime+=m;update();}
-
-function toggleFocus(){
-  focus=!focus;
-  document.getElementById("focusScreen").style.display=focus?"flex":"none";
-}
-
-function scrollToSec(id){
-  document.getElementById(id).scrollIntoView({behavior:"smooth"});
-}
-
-const ctx=document.getElementById("chart");
-const chart=new Chart(ctx,{
-  type:"doughnut",
-  data:{
-    labels:["Digital Life","Real Life"],
-    datasets:[{
-      data:[screenTime,realTime],
-      backgroundColor:["#ec4899","#22c55e"]
-    }]
-  },
-  options:{plugins:{legend:{labels:{color:"#fff"}}}}
-});
-
-// LIVE ENGINE
-setInterval(update,3000);
-update();
+(function(){
+  const menuToggle = document.querySelector('.menu-toggle');
+  const menu = document.querySelector('.menu');
+  if(!menuToggle || !menu) return;
+  function closeMenu(){menu.classList.remove('show');document.body.classList.remove('menu-open');}
+  menuToggle.addEventListener('click', ()=>{
+    const opened = menu.classList.toggle('show');
+    document.body.classList.toggle('menu-open', opened);
+  });
+  document.querySelectorAll('.menu a').forEach(a=>a.addEventListener('click', closeMenu));
+})();
 </script>
 
 </body>
 </html>
+
